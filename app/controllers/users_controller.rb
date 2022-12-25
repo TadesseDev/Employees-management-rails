@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was created successfully.' }
         format.json { render :json, @user }
         format.turbo_stream {render turbo_stream:
-          turbo_stream.append('users', UserComponent.new(user: @user).render_in(view_context))
+          turbo_stream.append('users', render_to_string(UserComponent.new(user: @user)))
         }
       end
     end
@@ -22,6 +22,25 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user=User.find(params[:id])
+    if @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was deleted successfully.' }
+        format.json { render :json, @user }
+        format.turbo_stream {render turbo_stream:
+          turbo_stream.remove(@user)
+        }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to users_url, warning: 'Fail to delete user' }
+        format.json { render :json, @user }
+        format.turbo_stream {render turbo_stream:
+          turbo_stream.remove(@user)
+        }
+
+    end
+    end
   end
 
   def new

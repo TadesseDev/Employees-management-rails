@@ -1,1 +1,5 @@
-<h1><%= @user.name %></h1>
+<div id="<%= dom_id @user %>">
+  <h2><%= @user.name %></h2>
+  <p><%= @user.date_of_birth %></p>
+  <%= button_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-red" %>
+</div>
