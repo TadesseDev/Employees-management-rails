@@ -1,13 +1,21 @@
+<div class="justify-center justify-center align-middle items-center
+"></div>
+<%= form_with model: @user, class: "bg-red-400 flex justify-center flex-col items-center" do |form|%>
 
-<%= form_with model: @user do |form|%>
-  <%= form.label :name, class: ""%>
+  <%= form.label :name, class: "bg-red-800"%>
+
+
   <%= form.text_field :name, required: true %>
   <%= form.label "date of birth" %>
+
+
   <%= form.text_field :date_of_birth %>
+
   <%= form.label "male" %>
-  <%= form.radio_button :gender, "Male"%>
-  <%= form.radio_button :gender, "Female"%>
+
+  <%= form.radio_button :gender, "Male" %>
+  <%= form.radio_button :gender, "Female" %>
+
   <%= form.submit %>
 <% end %>
 
-<div class=""></div>

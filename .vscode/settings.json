@@ -1,0 +1,7 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "erb": "html",
+    "ruby": "html",
+    "html": "erb"
+  }
+}

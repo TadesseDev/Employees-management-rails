@@ -1,7 +1,9 @@
-
+<div class="flex flex-col justify-center items-center">
 <div id="users">
 <%= render(UserComponent.new(user: @users))%>
 </div>
-<div id="new-user">
+<div id="new-user" class="flex justify-center flex-col">
 <%= render(NewUserComponent.new(user: User.new))%>
+</div>
+
 </div>
