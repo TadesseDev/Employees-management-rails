@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_users, only: [:index, :create]
   def index
-    # @users=User.all
+    respond_to do |format|
+      format.html
+      format.json {render :json => @users, :status => :ok}
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.update(
+          'users', UserComponent.with_collection(@users).render_in(view_context))
+      }
+    end
   end
 
   def edit
