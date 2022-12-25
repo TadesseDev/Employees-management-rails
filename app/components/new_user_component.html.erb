@@ -1,0 +1,13 @@
+
+<%= form_with model: @user do |form|%>
+  <%= form.label :name, class: ""%>
+  <%= form.text_field :name, required: true %>
+  <%= form.label "date of birth" %>
+  <%= form.text_field :date_of_birth %>
+  <%= form.label "male" %>
+  <%= form.radio_button :gender, "Male"%>
+  <%= form.radio_button :gender, "Female"%>
+  <%= form.submit %>
+<% end %>
+
+<div class=""></div>
