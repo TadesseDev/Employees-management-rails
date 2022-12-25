@@ -74,3 +74,7 @@ end
 gem "dotenv-rails", "~> 2.8"
 
 gem "view_component", "~> 2.80"
+
+gem "tailwindcss", "~> 0.1.1"
+
+gem "tailwindcss-rails", "~> 2.0"
