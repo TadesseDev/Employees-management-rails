@@ -19,27 +19,31 @@ class UsersController < ApplicationController
   end
 
   def update
+        respond_to do |format|
+          if @user.update(user_params)
+            format.html {redirect_to user_path, notice: 'User was updated successfully.'}
+            format.json {render :json => @users, :status => :ok}
+            format.turbo_stream {render turbo_stream: turbo_stream.update(@user)}
+          end
+        end
   end
 
   def destroy
     @user=User.find(params[:id])
-    if @user.destroy
-      respond_to do |format|
-        format.html { redirect_to users_url, notice: 'User was deleted successfully.' }
-        format.json { render :json, @user }
-        format.turbo_stream {render turbo_stream:
-          turbo_stream.remove(@user)
-        }
+    respond_to do |format|
+      if @user.destroy
+          format.html { redirect_to users_url, notice: 'User was deleted successfully.' }
+          format.json { render :json, @user }
+          format.turbo_stream {render turbo_stream:
+            turbo_stream.remove(@user)
+          }
+      else
+          format.html { redirect_to users_url, warning: 'Fail to delete user' }
+          format.json { render :json, @user }
+          format.turbo_stream {render turbo_stream:
+            turbo_stream.remove(@user)
+          }
       end
-    else
-      respond_to do |format|
-        format.html { redirect_to users_url, warning: 'Fail to delete user' }
-        format.json { render :json, @user }
-        format.turbo_stream {render turbo_stream:
-          turbo_stream.remove(@user)
-        }
-
-    end
     end
   end
 

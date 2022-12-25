@@ -1,5 +1,7 @@
 <div id="<%= dom_id @user %>">
   <h2><%= @user.name %></h2>
   <p><%= @user.date_of_birth %></p>
-  <%= button_to "Delete", @user, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-red" %>
+  <form class="button_to inline-block"" method="post" action="/users/<%=@user.id%>"><input type="hidden" name="_method" value="delete" autocomplete="off" /><button data-confirm="Are you sure?" class="btn btn-red" type="submit">Delete</button><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off" /></form>
+
+  <form class="button_to inline-block" method="post" action="/users/<%=@user.id%>"><input type="hidden" name="_method" value="patch" autocomplete="off" /><button class="btn btn-blue " type="submit">Update</button><input type="hidden" name="authenticity_token" value="form_authenticity_token" autocomplete="off" /></form>
 </div>
