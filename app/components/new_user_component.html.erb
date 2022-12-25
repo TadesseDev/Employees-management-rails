@@ -1,6 +1,6 @@
-<div class="justify-center justify-center border-spacing-12 border-green-500 align-middle items-center
-"></div>
-<%= form_with model: @user, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 m-auto w-max mb-4" do |form|%>
+
+<div id="<%= dom_id @user %>" data-controller="form-cleanup">
+  <%= form_with model: @user, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 m-auto w-max mb-4" do |form|%>
 
   <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2"%>
 
@@ -17,6 +17,7 @@
   <%= form.radio_button :gender, "Male" %>
   <%= form.radio_button :gender, "Female" %>
 </div>
-  <%= form.submit class: "btn btn-blue m-auto block"%>
+  <%= form.submit class: "btn btn-blue m-auto block", "data-action": "form-cleanup#clean"%>
 <% end %>
+</div>
 

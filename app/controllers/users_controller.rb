@@ -4,6 +4,23 @@ class UsersController < ApplicationController
     # @users=User.all
   end
 
+  def edit
+    @user=User.find(params[:id])
+    respond_to do |format|
+      if @user
+          format.html
+          format.turbo_stream {render turbo_stream:
+            turbo_stream.replace(@user, render_to_string(NewUserComponent.new(user: @user)))
+          }
+      else
+          format.html { redirect_to users_url, warning: 'Fail to delete user' }
+          format.json { render :json, @user }
+          format.turbo_stream {render turbo_stream:
+            turbo_stream.remove(@user)
+          }
+      end
+    end
+  end
   def create
     @user=User.new(user_params)
     if @user.save
@@ -11,19 +28,22 @@ class UsersController < ApplicationController
         p @users.length
         format.html { redirect_to @user, notice: 'User was created successfully.' }
         format.json { render :json, @user }
-        format.turbo_stream {render turbo_stream:
-          turbo_stream.append('users', render_to_string(UserComponent.new(user: @user)))
+        format.turbo_stream {render turbo_stream:[
+          turbo_stream.append('users', render_to_string(UserComponent.new(user: @user))),
+          turbo_stream.replace(User.new, render_to_string(NewUserComponent.new(user: User.new)))
+        ]
         }
       end
     end
   end
 
   def update
+    @user=User.find(params[:id])
         respond_to do |format|
           if @user.update(user_params)
             format.html {redirect_to user_path, notice: 'User was updated successfully.'}
             format.json {render :json => @users, :status => :ok}
-            format.turbo_stream {render turbo_stream: turbo_stream.update(@user)}
+            format.turbo_stream {render turbo_stream: turbo_stream.replace(@user, render_to_string(UserComponent.new(user: @user)))}
           end
         end
   end
