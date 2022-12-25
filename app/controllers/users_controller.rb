@@ -5,7 +5,7 @@ class UsersController < ApplicationController
       format.html
       format.json {render :json => @users, :status => :ok}
       format.turbo_stream {
-        render turbo_stream: turbo_stream.update(
+        render turbo_stream: turbo_stream.prepend(
           'users', UserComponent.with_collection(@users).render_in(view_context))
       }
     end
