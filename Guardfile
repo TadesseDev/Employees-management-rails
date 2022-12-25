@@ -53,4 +53,5 @@ guard 'livereload' do
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
   watch(%r{app/components/.+\.(erb|haml|slim)})
+  # watch(%r{app/controllers/.+\.(rb)})
 end
