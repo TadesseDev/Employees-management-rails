@@ -9,6 +9,7 @@ gem "rails", "~> 7.0.4"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+gem "font-awesome-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
@@ -79,3 +80,4 @@ gem "view_component", "~> 2.80"
 gem "tailwindcss", "~> 0.1.1"
 
 gem "tailwindcss-rails", "~> 2.0"
+
