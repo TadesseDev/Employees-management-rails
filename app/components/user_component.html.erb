@@ -4,10 +4,8 @@
   <form class="button_to inline-block" method="post" action="/users/<%=@user.id%>">
 <input type="hidden" name="_method" value="delete" autocomplete="off" />
   <button data-confirm="Are you sure?" class="btn btn-red" type="submit">
-  <i class="fa fa-circle-trash"></i>Delete</button>
+  <i class="fa fa-duotone fa-trash m-1"></i>Delete</button>
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off" /></form>
-  <form class="button_to inline-block" method="post" action="/users/<%=@user.id%>/edit"><input type="hidden" name="_method" value="get" autocomplete="off" /><button class="btn btn-blue " type="submit">Update</button><input type="hidden" name="authenticity_token" value="form_authenticity_token" autocomplete="off" /></form>
+  <form class="button_to inline-block" method="post" action="/users/<%=@user.id%>/edit"><input type="hidden" name="_method" value="get" autocomplete="off" /><button class="btn btn-blue " type="submit">
+    <i class="fa-regular fa-pen-to-square m-1"></i>Update</button><input type="hidden" name="authenticity_token" value="form_authenticity_token" autocomplete="off" /></form>
 </div>
-<i class="fa fa-trash"></i>
-Get started <i class="fa fa-chevron-right"></i>
-<i class="fa fa-quote-left fa-4x text-muted pull-left"></i>
